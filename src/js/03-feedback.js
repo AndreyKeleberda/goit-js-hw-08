@@ -15,7 +15,7 @@ function onTextareaInput(e) {
 document.addEventListener('DOMContentLoaded', reload);
 function reload() {
   const localStorageData = JSON.parse(localStorage.getItem(USER_DATA));
-  if (localStorageData.message !== null) {
+  if (localStorageData !== null) {
     textArea.value = localStorageData.message || '';
     input.value = localStorageData.email || '';
   }

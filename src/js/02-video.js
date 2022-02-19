@@ -12,15 +12,21 @@ player.on('timeupdate', throttle(onPlay, 1000));
 
 document.addEventListener('DOMContentLoaded', reload);
 function reload() {
-  player
-    .setCurrentTime(JSON.parse(localStorage.getItem(KEY_TIME_VIDEO)).seconds)
-    .then(function (seconds) {})
-    .catch(function (error) {
-      switch (error.name) {
-        case 'RangeError':
-          break;
-        default:
-          break;
-      }
-    });
+  if (JSON.parse(localStorage.getItem(KEY_TIME_VIDEO)) === null) {
+    return;
+  }
+  const stopPoint = JSON.parse(localStorage.getItem(KEY_TIME_VIDEO)).seconds;
+  if (stopPoint) {
+    player
+      .setCurrentTime(stopPoint)
+      .then(function (seconds) {})
+      .catch(function (error) {
+        switch (error.name) {
+          case 'RangeError':
+            break;
+          default:
+            break;
+        }
+      });
+  }
 }
