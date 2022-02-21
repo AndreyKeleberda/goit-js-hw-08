@@ -16,19 +16,12 @@ document.addEventListener('DOMContentLoaded', reload);
 function reload() {
   const localStorageData = JSON.parse(localStorage.getItem(USER_DATA));
   if (localStorageData !== null) {
-    textArea.value = localStorageData.message || '';
     input.value = localStorageData.email || '';
+    textArea.value = localStorageData.message || '';
+    userDataObj.email = localStorageData.email || '';
+    userDataObj.message = localStorageData.message || '';
   }
 }
-// populateTextarea();
-// function populateTextarea() {
-//   const localStorageData = JSON.parse(localStorage.getItem(USER_DATA));
-//   if (localStorageData === null) {
-//     return;
-//   }
-//   textArea.value = localStorageData.message;
-//   input.value = localStorageData.email;
-// }
 
 form.addEventListener('submit', onFormSubmit);
 function onFormSubmit(e) {

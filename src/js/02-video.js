@@ -12,10 +12,11 @@ player.on('timeupdate', throttle(onPlay, 1000));
 
 document.addEventListener('DOMContentLoaded', reload);
 function reload() {
-  if (JSON.parse(localStorage.getItem(KEY_TIME_VIDEO)) === null) {
+  const currentPlayTime = JSON.parse(localStorage.getItem(KEY_TIME_VIDEO));
+  if (currentPlayTime === null) {
     return;
   }
-  const stopPoint = JSON.parse(localStorage.getItem(KEY_TIME_VIDEO)).seconds;
+  const stopPoint = currentPlayTime.seconds;
   if (stopPoint) {
     player
       .setCurrentTime(stopPoint)
